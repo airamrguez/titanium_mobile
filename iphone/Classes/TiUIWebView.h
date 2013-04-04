@@ -7,11 +7,12 @@
 #ifdef USE_TI_UIWEBVIEW
 
 #import "TiUIView.h"
+#import "TapDetectingWindow.h"
 
-
-@interface TiUIWebView : TiUIView<UIWebViewDelegate> {
+@interface TiUIWebView : TiUIView<UIWebViewDelegate, TapDetectingWindowDelegate> {
 @private
 	UIWebView *webview;
+    TapDetectingWindow *mWindow;
 	UIActivityIndicatorView *spinner;
 	NSURL *url;
 	NSMutableDictionary *listeners;

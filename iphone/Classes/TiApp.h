@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "TapDetectingWindow.h"
 #import "TiHost.h"
 #import "KrollBridge.h"
 #ifdef USE_TI_UIWEBVIEW
@@ -30,7 +31,7 @@ TI_INLINE void waitForMemoryPanicCleared()   //WARNING: This must never be run o
  */
 @interface TiApp : TiHost <UIApplicationDelegate> 
 {
-	UIWindow *window;
+	TapDetectingWindow *window;
 	UIImageView *loadView;
 	BOOL loaded;
 
@@ -66,7 +67,7 @@ TI_INLINE void waitForMemoryPanicCleared()   //WARNING: This must never be run o
  
  Convenience method to access the application's primary window
  */
-@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet TapDetectingWindow *window;
 
 @property (nonatomic, assign) id remoteNotificationDelegate;
 

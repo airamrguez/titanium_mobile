@@ -187,7 +187,7 @@
 -(void)attachToFirstViewController
 {
     if ([TiUtils isIOS5OrGreater]) {
-        UIWindow* newWindow = [self window];
+        TapDetectingWindow* newWindow = [self window];
         if (newWindow != nil) {
             UIViewController* parentController = [self getFirstViewControllerInResponderChain];
             if (parentController != nil) {

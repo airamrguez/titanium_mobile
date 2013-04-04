@@ -143,7 +143,7 @@ TI_INLINE void waitForMemoryPanicCleared();   //WARNING: This must never be run 
 
 -(UIView *) topMostView
 {
-    UIWindow  *currentKeyWindow_ = [[UIApplication sharedApplication] keyWindow];
+    TapDetectingWindow  *currentKeyWindow_ = [[UIApplication sharedApplication] keyWindow];
     return [[currentKeyWindow_ subviews] lastObject];
 }
 -(void)attachXHRBridgeIfRequired
@@ -315,7 +315,7 @@ TI_INLINE void waitForMemoryPanicCleared();   //WARNING: This must never be run 
 	[TiExceptionHandler defaultExceptionHandler];
 
 	// nibless window
-	window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+	window = [[TapDetectingWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
 	[self initController];
 
@@ -649,7 +649,7 @@ TI_INLINE void waitForMemoryPanicCleared();   //WARNING: This must never be run 
 	}
 }
 
-- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(TapDetectingWindow *)window
 {
     if ([self windowIsKeyWindow]) {
         return [controller supportedInterfaceOrientations];

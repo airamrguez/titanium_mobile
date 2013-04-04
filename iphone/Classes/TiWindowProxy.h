@@ -10,7 +10,7 @@
 #import "TiUIWindow.h"
 #import "TiUIView.h"
 #import "TiViewController.h"
-
+#import "TapDetectingWindow.h"
 /**
  Titanium orientation flags.
  */
@@ -193,7 +193,7 @@ TiOrientationFlags TiOrientationFlagsFromObject(id args);
 
 -(void)releaseController;
 -(void)replaceController;
--(UIWindow*)_window;
+-(TapDetectingWindow*)_window;
 -(BOOL)_handleOpen:(id)args;
 -(BOOL)_handleClose:(id)args;
 -(void)_tabAttached;

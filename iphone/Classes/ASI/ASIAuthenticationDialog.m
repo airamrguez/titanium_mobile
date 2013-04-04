@@ -9,6 +9,7 @@
 #import "ASIAuthenticationDialog.h"
 #import "ASIHTTPRequest.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TapDetectingWindow.h"
 
 static ASIAuthenticationDialog *sharedDialog = nil;
 static BOOL isDismissing = NO;

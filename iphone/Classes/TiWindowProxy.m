@@ -148,7 +148,7 @@ TiOrientationFlags TiOrientationFlagsFromObject(id args)
 	return YES;
 }
 
--(UIWindow*)_window
+-(TapDetectingWindow*)_window
 {
 	return [[TiApp app] window];
 }

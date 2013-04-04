@@ -166,8 +166,26 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 			[spinner sizeToFit];
 			[spinner startAnimating];
 		}
+		mWindow = (TapDetectingWindow *)[[UIApplication sharedApplication].windows objectAtIndex:0];
+		mWindow.viewToObserve = webview;
+		mWindow.controllerThatObserves = self;
 	}
 	return webview;
+}
+
+-(void)userDidTapWebView:(id)tapPoint
+{
+	NSLog(@"El usuario ha hecho tap sobre la página web.");
+}
+
+- (void)userTouchBegan:(id)tapPoint {
+	NSLog(@"Touch start.");
+}
+- (void)userTouchMoved:(id)tapPoint {
+	NSLog(@"Touch move.");
+}
+- (void)userTouchEnded:(id)tapPoint {
+	NSLog(@"Touch end.");
 }
 
 - (id)accessibilityElement
