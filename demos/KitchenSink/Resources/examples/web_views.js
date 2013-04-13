@@ -86,6 +86,21 @@ tableview.addEventListener('click', function(e)
 		w.setRightNavButton(reloadButton);
 	}
 
+	webview.addEventListener('touchstart', function(e) {
+		Ti.API.info('<<<<<<<<<<<<<<<<<--------------- Touch start ---------------->>>>>>>>>>>>>>>>>>>>>>');
+		console.log('Touch start at ' + e.x);
+	});
+
+	webview.addEventListener('touchmove', function(e) {
+		Ti.API.info('<<<<<<<<<<<<<<<<<--------------- Touch move ---------------->>>>>>>>>>>>>>>>>>>>>>');
+		console.log('Touch move at ' + e.x);
+	});
+
+	webview.addEventListener('touchend', function(e) {
+		Ti.API.info('<<<<<<<<<<<<<<<<<--------------- Touch end ---------------->>>>>>>>>>>>>>>>>>>>>>');
+		console.log('Touch end at ' + e.x);
+	});
+
 	//	webview.addEventListener('singletap', function(e)
 	//	{
 	//		alert('singletap');

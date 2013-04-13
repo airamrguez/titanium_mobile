@@ -1,5 +1,6 @@
 // create table view data object
 var data = [
+	{title:'Webview', hasChild:true, test:'../examples/web_views.js'},
 	{title:'Slider', hasChild:true, test:'../examples/slider.js'},
 	{title:'Switch', hasChild:true, test:'../examples/switch.js'},
 	{title:'Activity Indicator', hasChild:true, test:'../examples/activity_indicator.js'},

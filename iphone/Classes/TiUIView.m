@@ -19,6 +19,7 @@
 #import "TiViewProxy.h"
 #import "TiApp.h"
 #import "UIImage+Resize.h"
+#import "TiUIWebView.h"
 
 void InsetScrollViewForKeyboard(UIScrollView * scrollView,CGFloat keyboardTop,CGFloat minimumContentHeight)
 {
@@ -1100,15 +1101,22 @@ DEFINE_EXCEPTIONS
 // For subclasses
 -(BOOL)touchedContentViewWithEvent:(UIEvent *)event
 {
+	if ([self class] == [TiUIWebView class]) {
+		return YES;
+	}
     return NO;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	NSLog(@"El padre procesa el touch de start.");
     if ([[event touchesForView:self] count] > 0 || [self touchedContentViewWithEvent:event]) {
+    	NSLog(@"Cumple los requisitos para procesar touches");
         [self processTouchesBegan:touches withEvent:event];
     }
-    [super touchesBegan:touches withEvent:event];
+    if ([self class] != [TiUIWebView class]) {
+    	[super touchesBegan:touches withEvent:event];
+	}
 }
 
 - (void)processTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -1131,7 +1139,10 @@ DEFINE_EXCEPTIONS
     if ([[event touchesForView:self] count] > 0 || [self touchedContentViewWithEvent:event]) {
         [self processTouchesMoved:touches withEvent:event];
     }
-    [super touchesMoved:touches withEvent:event];
+    if ([self class] != [TiUIWebView class]) {
+    	[super touchesMoved:touches withEvent:event];
+	}
+    
 }
 
 - (void)processTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -1152,7 +1163,9 @@ DEFINE_EXCEPTIONS
     if ([[event touchesForView:self] count] > 0 || [self touchedContentViewWithEvent:event]) {
         [self processTouchesEnded:touches withEvent:event];
     }
-    [super touchesEnded:touches withEvent:event];
+    if ([self class] != [TiUIWebView class]) {
+    	[super touchesEnded:touches withEvent:event];
+	}
 }
 
 - (void)processTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

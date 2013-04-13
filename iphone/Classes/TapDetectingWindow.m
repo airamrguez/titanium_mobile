@@ -16,14 +16,14 @@
 - (void)forwardTap:(id)touch {
     [controllerThatObserves userDidTapWebView:touch];
 }
-- (void)forwardTouchBegan:(id)touch {
-    [controllerThatObserves userTouchBegan:touch];
+- (void)forwardTouchBegan:(NSArray *)touch {
+    [controllerThatObserves userTouchBegan:[touch objectAtIndex:0] andEvent:[touch objectAtIndex:1]];
 }
-- (void)forwardTouchMoved:(id)touch {
-    [controllerThatObserves userTouchMoved:touch];
+- (void)forwardTouchMoved:(NSArray *)touch {
+    [controllerThatObserves userTouchMoved:[touch objectAtIndex:0] andEvent:[touch objectAtIndex:1]];
 }
-- (void)forwardTouchEnded:(id)touch {
-    [controllerThatObserves userTouchEnded:touch];
+- (void)forwardTouchEnded:(NSArray *)touch {
+    [controllerThatObserves userTouchEnded:[touch objectAtIndex:0] andEvent:[touch objectAtIndex:1]];
 }
 - (void)sendEvent:(UIEvent *)event {
     [super sendEvent:event];
@@ -41,12 +41,13 @@
     NSLog(@"TapPoint = %f, %f", tapPoint.x, tapPoint.y);
     NSArray *pointArray = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%f", tapPoint.x],
     [NSString stringWithFormat:@"%f", tapPoint.y], nil];
+    NSArray *argArray = [NSArray arrayWithObjects:[event allTouches], event, nil];
     if (touch.phase == UITouchPhaseBegan)
-    [self performSelector:@selector(forwardTouchBegan:) withObject:pointArray afterDelay:0.5];
+    [self performSelector:@selector(forwardTouchBegan:) withObject:argArray afterDelay:0.5];
     else if (touch.phase == UITouchPhaseMoved)
-    [self performSelector:@selector(forwardTouchMoved:) withObject:pointArray afterDelay:0.5];
+    [self performSelector:@selector(forwardTouchMoved:) withObject:argArray];
     else if (touch.phase == UITouchPhaseEnded)
-    [self performSelector:@selector(forwardTouchEnded:) withObject:pointArray afterDelay:0.5];
+    [self performSelector:@selector(forwardTouchEnded:) withObject:argArray];
     if (touch.tapCount == 1) {
         [self performSelector:@selector(forwardTap:) withObject:pointArray afterDelay:0.5];
     }

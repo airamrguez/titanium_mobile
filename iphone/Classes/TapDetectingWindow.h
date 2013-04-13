@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
 @protocol TapDetectingWindowDelegate
 - (void)userDidTapWebView:(id)tapPoint;
-- (void)userTouchBegan:(id)tapPoint;
-- (void)userTouchMoved:(id)tapPoint;
-- (void)userTouchEnded:(id)tapPoint;
+- (void)userTouchBegan:(NSSet*)touches andEvent:(UIEvent*)event;
+- (void)userTouchMoved:(NSSet*)touches andEvent:(UIEvent*)event;
+- (void)userTouchEnded:(NSSet*)touches andEvent:(UIEvent*)event;
 @end
 @interface TapDetectingWindow : UIWindow {
     UIView *viewToObserve;
