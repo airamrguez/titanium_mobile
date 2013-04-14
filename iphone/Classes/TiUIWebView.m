@@ -175,15 +175,13 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 
 -(void)userDidTapWebView:(id)tapPoint
 {
-	//NSLog(@"El usuario ha hecho tap sobre la página web.");
+	
 }
 
 - (void)userTouchBegan:(NSSet*)touches andEvent:(UIEvent*)event {
-    NSLog(@"Touch start.");
     [super touchesBegan:touches withEvent:event];
 }
 - (void)userTouchMoved:(NSSet*)touches andEvent:(UIEvent*)event {
-	//NSLog(@"Touch move.");
     [super touchesMoved:touches withEvent:event];
 }
 - (void)userTouchEnded:(NSSet*)touches andEvent:(UIEvent*)event {

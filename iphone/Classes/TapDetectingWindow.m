@@ -38,12 +38,12 @@
     // if ([touch.view isDescendantOfView:viewToObserve] == NO)
     //     return;
     CGPoint tapPoint = [touch locationInView:viewToObserve];
-    NSLog(@"TapPoint = %f, %f", tapPoint.x, tapPoint.y);
+    //NSLog(@"TapPoint = %f, %f", tapPoint.x, tapPoint.y);
     NSArray *pointArray = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%f", tapPoint.x],
     [NSString stringWithFormat:@"%f", tapPoint.y], nil];
     NSArray *argArray = [NSArray arrayWithObjects:[event allTouches], event, nil];
     if (touch.phase == UITouchPhaseBegan)
-    [self performSelector:@selector(forwardTouchBegan:) withObject:argArray afterDelay:0.5];
+    [self performSelector:@selector(forwardTouchBegan:) withObject:argArray];
     else if (touch.phase == UITouchPhaseMoved)
     [self performSelector:@selector(forwardTouchMoved:) withObject:argArray];
     else if (touch.phase == UITouchPhaseEnded)
