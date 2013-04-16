@@ -7,6 +7,7 @@
 #ifdef USE_TI_UISCROLLVIEW
 
 #import "TiUIView.h"
+#import "TapDetectingWindow.h"
 
 @interface TiUIScrollViewImpl : UIScrollView {
 @private
@@ -16,10 +17,11 @@
 -(void)setTouchHandler:(TiUIView*)handler;
 @end
 
-@interface TiUIScrollView : TiUIView<TiScrolling,UIScrollViewDelegate> {
+@interface TiUIScrollView : TiUIView<TiScrolling,UIScrollViewDelegate,TapDetectingWindowDelegate> {
 
 @private
 	TiUIScrollViewImpl * scrollView;
+    TapDetectingWindow *mWindow;
 	UIView * wrapperView;
 	TiDimension contentWidth;
 	TiDimension contentHeight;

@@ -173,11 +173,6 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 	return webview;
 }
 
--(void)userDidTapWebView:(id)tapPoint
-{
-	
-}
-
 - (void)userTouchBegan:(NSSet*)touches andEvent:(UIEvent*)event {
     [super touchesBegan:touches withEvent:event];
 }

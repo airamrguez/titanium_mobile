@@ -20,6 +20,7 @@
 #import "TiApp.h"
 #import "UIImage+Resize.h"
 #import "TiUIWebView.h"
+#import "TiUIScrollView.h"
 
 void InsetScrollViewForKeyboard(UIScrollView * scrollView,CGFloat keyboardTop,CGFloat minimumContentHeight)
 {
@@ -1101,7 +1102,7 @@ DEFINE_EXCEPTIONS
 // For subclasses
 -(BOOL)touchedContentViewWithEvent:(UIEvent *)event
 {
-	if ([self class] == [TiUIWebView class]) {
+	if ([self class] == [TiUIWebView class] || [self class] == [TiUIScrollView class]) {
 		return YES;
 	}
     return NO;
@@ -1109,9 +1110,7 @@ DEFINE_EXCEPTIONS
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	NSLog(@"El padre procesa el touch de start.");
     if ([[event touchesForView:self] count] > 0 || [self touchedContentViewWithEvent:event]) {
-    	NSLog(@"Cumple los requisitos para procesar touches");
         [self processTouchesBegan:touches withEvent:event];
     }
     if ([self class] != [TiUIWebView class]) {

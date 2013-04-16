@@ -13,9 +13,6 @@
     [viewToObserve release];
     [super dealloc];
 }
-- (void)forwardTap:(id)touch {
-    [controllerThatObserves userDidTapWebView:touch];
-}
 - (void)forwardTouchBegan:(NSArray *)touch {
     [controllerThatObserves userTouchBegan:[touch objectAtIndex:0] andEvent:[touch objectAtIndex:1]];
 }
@@ -48,10 +45,7 @@
     [self performSelector:@selector(forwardTouchMoved:) withObject:argArray];
     else if (touch.phase == UITouchPhaseEnded)
     [self performSelector:@selector(forwardTouchEnded:) withObject:argArray];
-    if (touch.tapCount == 1) {
-        [self performSelector:@selector(forwardTap:) withObject:pointArray afterDelay:0.5];
-    }
-    else if (touch.tapCount > 1) {
+    if (touch.tapCount > 1) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(forwardTap:) object:pointArray];
     }
 }

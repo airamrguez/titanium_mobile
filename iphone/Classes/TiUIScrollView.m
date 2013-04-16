@@ -39,7 +39,6 @@
         && self.userInteractionEnabled && (touchedContentView == nil) ) {
         [touchHandler processTouchesBegan:touches withEvent:event];
  	}		
-	[super touchesBegan:touches withEvent:event];
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event 
 {
@@ -47,7 +46,6 @@
         && self.userInteractionEnabled && (touchedContentView == nil) ) {
         [touchHandler processTouchesMoved:touches withEvent:event];
     }		
-	[super touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event 
@@ -55,8 +53,7 @@
     if (!self.dragging && !self.zooming && !self.tracking 
         && self.userInteractionEnabled && (touchedContentView == nil) ) {
         [touchHandler processTouchesEnded:touches withEvent:event];
-    }		
-	[super touchesEnded:touches withEvent:event];
+    }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event 
@@ -105,8 +102,21 @@
 		[scrollView setDelegate:self];
         [scrollView setTouchHandler:self];
 		[self addSubview:scrollView];
+        mWindow = (TapDetectingWindow *)[[UIApplication sharedApplication].windows objectAtIndex:0];
+		mWindow.viewToObserve = scrollView;
+		mWindow.controllerThatObserves = self;
 	}
 	return scrollView;
+}
+
+- (void)userTouchBegan:(NSSet*)touches andEvent:(UIEvent*)event {
+    [super touchesBegan:touches withEvent:event];
+}
+- (void)userTouchMoved:(NSSet*)touches andEvent:(UIEvent*)event {
+    [super touchesMoved:touches withEvent:event];
+}
+- (void)userTouchEnded:(NSSet*)touches andEvent:(UIEvent*)event {
+    [super touchesEnded:touches withEvent:event];
 }
 
 - (id)accessibilityElement
