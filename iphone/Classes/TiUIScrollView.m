@@ -73,6 +73,8 @@
 {
 	RELEASE_TO_NIL(wrapperView);
 	RELEASE_TO_NIL(scrollView);
+    mWindow.viewToObserve = NULL;
+    mWindow.controllerThatObserves = NULL;
 	[super dealloc];
 }
 

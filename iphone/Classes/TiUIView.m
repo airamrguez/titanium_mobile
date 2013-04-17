@@ -19,8 +19,9 @@
 #import "TiViewProxy.h"
 #import "TiApp.h"
 #import "UIImage+Resize.h"
-#import "TiUIWebView.h"
-#import "TiUIScrollView.h"
+
+@class TiUIWebView;
+@class TiUIScrollView;
 
 void InsetScrollViewForKeyboard(UIScrollView * scrollView,CGFloat keyboardTop,CGFloat minimumContentHeight)
 {

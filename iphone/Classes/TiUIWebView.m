@@ -90,6 +90,8 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 	RELEASE_TO_NIL(reloadData);
 	RELEASE_TO_NIL(reloadDataProperties);
 	RELEASE_TO_NIL(lastValidLoad);
+    mWindow.viewToObserve = NULL;
+    mWindow.controllerThatObserves = NULL;
 	[super dealloc];
 }
 
