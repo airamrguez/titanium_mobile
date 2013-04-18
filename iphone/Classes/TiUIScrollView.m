@@ -1,8 +1,10 @@
 /**
  * Appcelerator Titanium Mobile
- * Copyright (c) 2009-2010 by Appcelerator, Inc. All Rights Reserved.
+ * Copyright (c) 2009-2013 by Appcelerator, Inc. All Rights Reserved.
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
+ *
+ * WARNING: This is generated code. Modify at your own risk and without support.
  */
 #ifdef USE_TI_UISCROLLVIEW
 
@@ -11,6 +13,13 @@
 #import "TiUtils.h"
 
 @implementation TiUIScrollViewImpl
+
+-(id)init {
+    if (self = [super init]) {
+        //self.delaysContentTouches = NO;
+    }
+    return self;
+}
 
 -(void)setTouchHandler:(TiUIView*)handler
 {
@@ -22,48 +31,61 @@
 {
     //If the content view is of type TiUIView touch events will automatically propagate
     //If it is not of type TiUIView we will fire touch events with ourself as source
-    if ([view isKindOfClass:[TiUIView class]]) {
-        touchedContentView= view;
-    }
-    else {
-        touchedContentView = nil;
-    }
+    //    if ([view isKindOfClass:[TiUIView class]]) {
+    //        touchedContentView= view;
+    //    }
+    //    else {
+    touchedContentView = nil;
+    //    }
     return [super touchesShouldBegin:touches withEvent:event inContentView:view];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
+- (BOOL)touchesShouldCancelInContentView:(UIView *)view {
+    return NO;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     //When userInteractionEnabled is false we do nothing since touch events are automatically
     //propagated. If it is dragging,tracking or zooming do not do anything.
-    if (!self.dragging && !self.zooming && !self.tracking 
-        && self.userInteractionEnabled && (touchedContentView == nil) ) {
-        [touchHandler processTouchesBegan:touches withEvent:event];
- 	}		
+    //if (!self.dragging && !self.zooming && !self.tracking
+    //    && self.userInteractionEnabled && (touchedContentView == nil) ) {
+    [touchHandler processTouchesBegan:touches withEvent:event];
+ 	//}
+    [super touchesBegan:touches withEvent:event];
 }
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event 
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (!self.dragging && !self.zooming && !self.tracking 
-        && self.userInteractionEnabled && (touchedContentView == nil) ) {
-        [touchHandler processTouchesMoved:touches withEvent:event];
-    }		
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event 
-{
-    if (!self.dragging && !self.zooming && !self.tracking 
-        && self.userInteractionEnabled && (touchedContentView == nil) ) {
-        [touchHandler processTouchesEnded:touches withEvent:event];
-    }
+    //if (!self.dragging && !self.zooming && !self.tracking
+    //    && self.userInteractionEnabled && (touchedContentView == nil) ) {
+    [touchHandler processTouchesMoved:touches withEvent:event];
+    //}
+    [super touchesMoved:touches withEvent:event];
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (!self.dragging && !self.zooming && !self.tracking 
-        && self.userInteractionEnabled && (touchedContentView == nil) ) {
-        [touchHandler processTouchesCancelled:touches withEvent:event];
-    }		
+    //if (!self.dragging && !self.zooming && !self.tracking
+    //    && self.userInteractionEnabled && (touchedContentView == nil) ) {
+    [touchHandler processTouchesEnded:touches withEvent:event];
+    //}
+    [super touchesEnded:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //    if (!self.dragging && !self.zooming && !self.tracking
+    //        && self.userInteractionEnabled && (touchedContentView == nil) ) {
+    [touchHandler processTouchesCancelled:touches withEvent:event];
+    //    }
 	[super touchesCancelled:touches withEvent:event];
 }
+
+- (void) dealloc
+{
+	[super dealloc];
+}
+
 @end
 
 @implementation TiUIScrollView
@@ -73,8 +95,6 @@
 {
 	RELEASE_TO_NIL(wrapperView);
 	RELEASE_TO_NIL(scrollView);
-    mWindow.viewToObserve = NULL;
-    mWindow.controllerThatObserves = NULL;
 	[super dealloc];
 }
 
@@ -96,7 +116,7 @@
 {
 	if(scrollView == nil)
 	{
-		scrollView = [[TiUIScrollViewImpl alloc] initWithFrame:[self bounds]];
+		scrollView = [[[TiUIScrollViewImpl alloc] init] initWithFrame:[self bounds]];
 		[scrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
 		[scrollView setBackgroundColor:[UIColor clearColor]];
 		[scrollView setShowsHorizontalScrollIndicator:NO];
@@ -104,22 +124,11 @@
 		[scrollView setDelegate:self];
         [scrollView setTouchHandler:self];
 		[self addSubview:scrollView];
-        mWindow = (TapDetectingWindow *)[[UIApplication sharedApplication].windows objectAtIndex:0];
-		mWindow.viewToObserve = scrollView;
-		mWindow.controllerThatObserves = self;
 	}
 	return scrollView;
 }
 
-- (void)userTouchBegan:(NSSet*)touches andEvent:(UIEvent*)event {
-    [super touchesBegan:touches withEvent:event];
-}
-- (void)userTouchMoved:(NSSet*)touches andEvent:(UIEvent*)event {
-    [super touchesMoved:touches withEvent:event];
-}
-- (void)userTouchEnded:(NSSet*)touches andEvent:(UIEvent*)event {
-    [super touchesEnded:touches withEvent:event];
-}
+
 
 - (id)accessibilityElement
 {
@@ -163,7 +172,7 @@
 	}
 	CGSize newContentSize = [self bounds].size;
 	CGFloat scale = [scrollView zoomScale];
-
+    
 	switch (contentWidth.type)
 	{
 		case TiDimensionTypeDip:
@@ -183,7 +192,7 @@
 			break;
 		}
 	}
-
+    
 	switch (contentHeight.type)
 	{
 		case TiDimensionTypeDip:
@@ -193,19 +202,19 @@
 		}
         case TiDimensionTypeUndefined:
         case TiDimensionTypeAutoSize:
-		case TiDimensionTypeAuto: // TODO: This may break the layout spec for content "auto"            
+		case TiDimensionTypeAuto: // TODO: This may break the layout spec for content "auto"
 		{
 			minimumContentHeight=[(TiViewProxy *)[self proxy] autoHeightForSize:[self bounds].size];
 			break;
 		}
-        case TiDimensionTypeAutoFill: // Assume that "fill" means "fill scrollview bounds"; not in spec           
+        case TiDimensionTypeAutoFill: // Assume that "fill" means "fill scrollview bounds"; not in spec
 		default:
 			minimumContentHeight = newContentSize.height;
 			break;
 	}
 	newContentSize.width *= scale;
 	newContentSize.height = scale * MAX(newContentSize.height,minimumContentHeight);
-
+    
 	[scrollView setContentSize:newContentSize];
 	CGRect wrapperBounds;
 	wrapperBounds.origin = CGPointZero;
@@ -225,9 +234,9 @@
 -(void)scrollToBottom
 {
     /*
-     * Calculate the bottom height & width and, sets the offset from the 
+     * Calculate the bottom height & width and, sets the offset from the
      * content view’s origin that corresponds to the receiver’s origin.
-     */ 
+     */
     UIScrollView *currScrollView = [self scrollView];
     
     CGSize svContentSize = currScrollView.contentSize;
@@ -236,7 +245,7 @@
     
     CGFloat bottomHeight = svContentSize.height - svBoundSize.height + svBottomInsets;
     CGFloat bottomWidth = svContentSize.width - svBoundSize.width;
-
+    
     CGPoint newOffset = CGPointMake(bottomWidth,bottomHeight);
     
     [currScrollView setContentOffset:newOffset animated:YES];
@@ -316,8 +325,8 @@
 	if ([self.proxy _hasListeners:@"scale"])
 	{
 		[self.proxy fireEvent:@"scale" withObject:[NSDictionary dictionaryWithObjectsAndKeys:
-											NUMFLOAT(scale),@"scale",
-											nil]];
+                                                   NUMFLOAT(scale),@"scale",
+                                                   nil]];
 	}
 }
 
@@ -365,7 +374,7 @@
 	return [self wrapperView];
 }
 
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView_ withView:(UIView *)view atScale:(float)scale 
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView_ withView:(UIView *)view atScale:(float)scale
 {
 	// scale between minimum and maximum. called after any 'bounce' animations
 	[(id<UIScrollViewDelegate>)[self proxy] scrollViewDidEndZooming:scrollView withView:(UIView*)view atScale:scale];
@@ -389,10 +398,10 @@
 			frameToCenter.origin.y = 0;
 		}
 	}
-    wrapperView.frame = frameToCenter;	
+    wrapperView.frame = frameToCenter;
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView_  
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView_
 {
 	// Tells the delegate when the scroll view is about to start scrolling the content.
 	[(id<UIScrollViewDelegate>)[self proxy] scrollViewWillBeginDragging:scrollView_];

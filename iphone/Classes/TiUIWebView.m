@@ -1,15 +1,17 @@
 /**
  * Appcelerator Titanium Mobile
- * Copyright (c) 2009-2010 by Appcelerator, Inc. All Rights Reserved.
+ * Copyright (c) 2009-2013 by Appcelerator, Inc. All Rights Reserved.
  * Licensed under the terms of the Apache Public License
  * Please see the LICENSE included with this distribution for details.
+ *
+ * WARNING: This is generated code. Modify at your own risk and without support.
  */
 #ifdef USE_TI_UIWEBVIEW
 
 #import "TiUIWebView.h"
 #import "TiUIWebViewProxy.h"
 #import "TiApp.h"
-#import "TiUtils.h" 
+#import "TiUtils.h"
 #import "TiProxy.h"
 #import "SBJSON.h"
 #import "TiHost.h"
@@ -20,19 +22,19 @@
 #import "Base64Transcoder.h"
 
 extern NSString * const TI_APPLICATION_ID;
-static NSString * const kTitaniumJavascript = @"Ti.App={};Ti.API={};Ti.App._listeners={};Ti.App._listener_id=1;Ti.App.id=Ti.appId;Ti.App._xhr=XMLHttpRequest;"
-		"Ti._broker=function(module,method,data){try{var url='app://'+Ti.appId+'/_TiA0_'+Ti.pageToken+'/'+module+'/'+method+'?'+Ti.App._JSON(data,1);"
-			"var xhr=new Ti.App._xhr();xhr.open('GET',url,false);xhr.send()}catch(X){}};"
-		"Ti._hexish=function(a){var r='';var e=a.length;var c=0;var h;while(c<e){h=a.charCodeAt(c++).toString(16);r+='\\\\u';var l=4-h.length;while(l-->0){r+='0'};r+=h}return r};"
-		"Ti._bridgeEnc=function(o){return'<'+Ti._hexish(o)+'>'};"
-		"Ti.App._JSON=function(object,bridge){var type=typeof object;switch(type){case'undefined':case'function':case'unknown':return undefined;case'number':case'boolean':return object;"
-			"case'string':if(bridge===1)return Ti._bridgeEnc(object);return'\"'+object.replace(/\"/g,'\\\\\"').replace(/\\n/g,'\\\\n').replace(/\\r/g,'\\\\r')+'\"'}"
-			"if((object===null)||(object.nodeType==1))return'null';if(object.constructor.toString().indexOf('Date')!=-1){return'new Date('+object.getTime()+')'}"
-			"if(object.constructor.toString().indexOf('Array')!=-1){var res='[';var pre='';var len=object.length;for(var i=0;i<len;i++){var value=object[i];"
-			"if(value!==undefined)value=Ti.App._JSON(value,bridge);if(value!==undefined){res+=pre+value;pre=', '}}return res+']'}var objects=[];"
-			"for(var prop in object){var value=object[prop];if(value!==undefined){value=Ti.App._JSON(value,bridge)}"
-			"if(value!==undefined){objects.push(Ti.App._JSON(prop,bridge)+': '+value)}}return'{'+objects.join(',')+'}'};"
-		"Ti.App._dispatchEvent=function(type,evtid,evt){var listeners=Ti.App._listeners[type];if(listeners){for(var c=0;c<listeners.length;c++){var entry=listeners[c];if(entry.id==evtid){entry.callback.call(entry.callback,evt)}}}};Ti.App.fireEvent=function(name,evt){Ti._broker('App','fireEvent',{name:name,event:evt})};Ti.API.log=function(a,b){Ti._broker('API','log',{level:a,message:b})};Ti.API.debug=function(e){Ti._broker('API','log',{level:'debug',message:e})};Ti.API.error=function(e){Ti._broker('API','log',{level:'error',message:e})};Ti.API.info=function(e){Ti._broker('API','log',{level:'info',message:e})};Ti.API.fatal=function(e){Ti._broker('API','log',{level:'fatal',message:e})};Ti.API.warn=function(e){Ti._broker('API','log',{level:'warn',message:e})};Ti.App.addEventListener=function(name,fn){var listeners=Ti.App._listeners[name];if(typeof(listeners)=='undefined'){listeners=[];Ti.App._listeners[name]=listeners}var newid=Ti.pageToken+Ti.App._listener_id++;listeners.push({callback:fn,id:newid});Ti._broker('App','addEventListener',{name:name,id:newid})};Ti.App.removeEventListener=function(name,fn){var listeners=Ti.App._listeners[name];if(listeners){for(var c=0;c<listeners.length;c++){var entry=listeners[c];if(entry.callback==fn){listeners.splice(c,1);Ti._broker('App','removeEventListener',{name:name,id:entry.id});break}}}};";
+static NSString * const kiNavidadJavascript = @"Ti.App={};Ti.API={};Ti.App._listeners={};Ti.App._listener_id=1;Ti.App.id=Ti.appId;Ti.App._xhr=XMLHttpRequest;"
+"Ti._broker=function(module,method,data){try{var url='app://'+Ti.appId+'/_TiA0_'+Ti.pageToken+'/'+module+'/'+method+'?'+Ti.App._JSON(data,1);"
+"var xhr=new Ti.App._xhr();xhr.open('GET',url,false);xhr.send()}catch(X){}};"
+"Ti._hexish=function(a){var r='';var e=a.length;var c=0;var h;while(c<e){h=a.charCodeAt(c++).toString(16);r+='\\\\u';var l=4-h.length;while(l-->0){r+='0'};r+=h}return r};"
+"Ti._bridgeEnc=function(o){return'<'+Ti._hexish(o)+'>'};"
+"Ti.App._JSON=function(object,bridge){var type=typeof object;switch(type){case'undefined':case'function':case'unknown':return undefined;case'number':case'boolean':return object;"
+"case'string':if(bridge===1)return Ti._bridgeEnc(object);return'\"'+object.replace(/\"/g,'\\\\\"').replace(/\\n/g,'\\\\n').replace(/\\r/g,'\\\\r')+'\"'}"
+"if((object===null)||(object.nodeType==1))return'null';if(object.constructor.toString().indexOf('Date')!=-1){return'new Date('+object.getTime()+')'}"
+"if(object.constructor.toString().indexOf('Array')!=-1){var res='[';var pre='';var len=object.length;for(var i=0;i<len;i++){var value=object[i];"
+"if(value!==undefined)value=Ti.App._JSON(value,bridge);if(value!==undefined){res+=pre+value;pre=', '}}return res+']'}var objects=[];"
+"for(var prop in object){var value=object[prop];if(value!==undefined){value=Ti.App._JSON(value,bridge)}"
+"if(value!==undefined){objects.push(Ti.App._JSON(prop,bridge)+': '+value)}}return'{'+objects.join(',')+'}'};"
+"Ti.App._dispatchEvent=function(type,evtid,evt){var listeners=Ti.App._listeners[type];if(listeners){for(var c=0;c<listeners.length;c++){var entry=listeners[c];if(entry.id==evtid){entry.callback.call(entry.callback,evt)}}}};Ti.App.fireEvent=function(name,evt){Ti._broker('App','fireEvent',{name:name,event:evt})};Ti.API.log=function(a,b){Ti._broker('API','log',{level:a,message:b})};Ti.API.debug=function(e){Ti._broker('API','log',{level:'debug',message:e})};Ti.API.error=function(e){Ti._broker('API','log',{level:'error',message:e})};Ti.API.info=function(e){Ti._broker('API','log',{level:'info',message:e})};Ti.API.fatal=function(e){Ti._broker('API','log',{level:'fatal',message:e})};Ti.API.warn=function(e){Ti._broker('API','log',{level:'warn',message:e})};Ti.App.addEventListener=function(name,fn){var listeners=Ti.App._listeners[name];if(typeof(listeners)=='undefined'){listeners=[];Ti.App._listeners[name]=listeners}var newid=Ti.pageToken+Ti.App._listener_id++;listeners.push({callback:fn,id:newid});Ti._broker('App','addEventListener',{name:name,id:newid})};Ti.App.removeEventListener=function(name,fn){var listeners=Ti.App._listeners[name];if(listeners){for(var c=0;c<listeners.length;c++){var entry=listeners[c];if(entry.callback==fn){listeners.splice(c,1);Ti._broker('App','removeEventListener',{name:name,id:entry.id});break}}}};";
 
 static NSString * const kMimeTextHTML = @"text/html";
 static NSString * const kContentData = @"kContentData";
@@ -62,7 +64,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 
 @interface LocalProtocolHandler : NSURLProtocol
 @end
- 
+
 @implementation TiUIWebView
 @synthesize reloadData, reloadDataProperties;
 
@@ -90,8 +92,8 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 	RELEASE_TO_NIL(reloadData);
 	RELEASE_TO_NIL(reloadDataProperties);
 	RELEASE_TO_NIL(lastValidLoad);
-    mWindow.viewToObserve = NULL;
-    mWindow.controllerThatObserves = NULL;
+    mWindow.viewToObserve = nil;
+    mWindow.controllerThatObserves = nil;
 	[super dealloc];
 }
 
@@ -104,11 +106,11 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 
 //-(UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 //{
-	/*	webview is a little _special_ and refuses to share events.
-	 *	As such, we have to take the events away if we have event listeners
-	 *	Or let webview has his entire cake. Through experimenting, if the
-	 *	webview is interested, a subview or subsubview will be the target.
-	 */
+/*	webview is a little _special_ and refuses to share events.
+ *	As such, we have to take the events away if we have event listeners
+ *	Or let webview has his entire cake. Through experimenting, if the
+ *	webview is interested, a subview or subsubview will be the target.
+ */
 
 //	UIView *view = [super hitTest:point withEvent:event];
 //	if ( ([self hasTouchableListener]) && willHandleTouches )
@@ -120,7 +122,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 //			return self;
 //		}
 //	}
-//	
+//
 //	return view;
 //}
 
@@ -130,7 +132,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 }
 
 
--(UIWebView*)webview 
+-(UIWebView*)webview
 {
 	if (webview==nil)
 	{
@@ -144,7 +146,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 		webview.contentMode = UIViewContentModeRedraw;
 		webview.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 		[self addSubview:webview];
-
+        
 		BOOL hideLoadIndicator = [TiUtils boolValue:[self.proxy valueForKey:@"hideLoadIndicator"] def:NO];
 		
 		// only show the loading indicator if it's a remote URL and 'hideLoadIndicator' property is not set.
@@ -154,12 +156,12 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 			UIActivityIndicatorViewStyle style = UIActivityIndicatorViewStyleGray;
 			if (bgcolor!=nil)
 			{
-				// check to see if the background is a dark color and if so, we want to 
+				// check to see if the background is a dark color and if so, we want to
 				// show the white indicator instead
 				if ([Webcolor isDarkColor:[bgcolor _color]])
 				{
 					style = UIActivityIndicatorViewStyleWhite;
-				} 
+				}
 			}
 			spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
 			[spinner setHidesWhenStopped:YES];
@@ -209,7 +211,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 		if (spinner!=nil)
 		{
 			spinner.center = self.center;
-		}		
+		}
 	}
 }
 
@@ -225,7 +227,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 	return [NSURL URLWithString:[[NSString stringWithFormat:@"app://%@/%@",TI_APPLICATION_ID,path] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
-- (NSString *)titaniumInjection
+- (NSString *)_inavidadInjection
 {
 	if (pageToken==nil) {
 		pageToken = [[NSString stringWithFormat:@"%d",[self hash]] retain];
@@ -235,7 +237,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 	[html appendString:@"<script id='__ti_injection'>"];
 	NSString *ti = [NSString stringWithFormat:@"%@%s",@"Ti","tanium"];
 	[html appendFormat:@"window.%@={};window.Ti=%@;Ti.pageToken=%@;Ti.appId='%@';",ti,ti,pageToken,TI_APPLICATION_ID];
-	[html appendString:kTitaniumJavascript];
+	[html appendString:kiNavidadJavascript];
 	[html appendString:@"</script>"];
 	return html;
 }
@@ -245,7 +247,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 	if ([content length] == 0) {
 		return content;
 	}
-	// attempt to make well-formed HTML and inject in our Titanium bridge code
+	// attempt to make well-formed HTML and inject in our iNavidad bridge code
 	// However, we only do this if the content looks like HTML
 	NSRange range = [content rangeOfString:@"<html"];
 	if (range.location == NSNotFound) {
@@ -274,15 +276,15 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 }
 
 -(void)loadHTML:(NSString*)content
-	   encoding:(NSStringEncoding)encoding 
-	   textEncodingName:(NSString*)textEncodingName
+	   encoding:(NSStringEncoding)encoding
+textEncodingName:(NSString*)textEncodingName
 	   mimeType:(NSString*)mimeType
-	   baseURL:(NSURL*)baseURL
+        baseURL:(NSURL*)baseURL
 {
 	if (baseURL == nil) {
 		baseURL = [NSURL fileURLWithPath:[TiHost resourcePath]];
 	}
-	content = [[self class] content:content withInjection:[self titaniumInjection]];
+	content = [[self class] content:content withInjection:[self _inavidadInjection]];
 	
 	[self ensureLocalProtocolHandler];
 	[[self webview] loadData:[content dataUsingEncoding:encoding] MIMEType:mimeType textEncodingName:textEncodingName baseURL:baseURL];
@@ -293,7 +295,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 
 -(void)loadFile:(NSString*)absolutePath
 	   encoding:(NSStringEncoding)encoding
-		textEncodingName:(NSString*)textEncodingName
+textEncodingName:(NSString*)textEncodingName
 	   mimeType:(NSString*)mimeType
 {
 	NSURL *requestURL = [NSURL fileURLWithPath:absolutePath];
@@ -423,7 +425,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 	ENSURE_SINGLE_ARG(args,NSObject);
 	
 	[self stopLoading];
-
+    
 	if ([args isKindOfClass:[TiBlob class]])
 	{
 		TiBlob *blob = (TiBlob*)args;
@@ -490,13 +492,13 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 	[self setReloadData:args];
 	[self setReloadDataProperties:nil];
 	reloadMethod = @selector(setUrl_:);
-
+    
 	RELEASE_TO_NIL(url);
 	RELEASE_TO_NIL(lastValidLoad);
 	ENSURE_SINGLE_ARG(args,NSString);
 	
 	url = [[TiUtils toURL:args proxy:(TiProxy*)self.proxy] retain];
-
+    
 	[self stopLoading];
 	
 	if ([[self class] isLocalURL:url]) {
@@ -592,7 +594,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 		} else {
 			NSLog(@"[WARN] couldn't load URL: %@",url);
 			RELEASE_TO_NIL(url);
-		}	
+		}
 	}
 }
 
@@ -611,7 +613,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 	NSString *toEncode = [NSString stringWithFormat:@"%@:%@",username,password];
 	const char *data = [toEncode UTF8String];
 	size_t len = [toEncode length];
-
+    
 	char *base64Result;
     size_t theResultLength;
 	bool result = Base64AllocAndEncodeData(data, len, &base64Result, &theResultLength);
@@ -626,7 +628,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 		{
 			[self setUrl_:[NSArray arrayWithObject:[url absoluteString]]];
 		}
-	}    
+	}
 }
 
 -(NSString*)stringByEvaluatingJavaScriptFromString:(NSString *)code
@@ -663,21 +665,21 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 	NSURL * newUrl = [request URL];
-
+    
 	if ([self.proxy _hasListeners:@"beforeload"])
 	{
 		NSDictionary *event = newUrl == nil ? nil : [NSDictionary dictionaryWithObjectsAndKeys:[newUrl absoluteString], @"url", NUMINT(navigationType), @"navigationType", nil];
 		[self.proxy fireEvent:@"beforeload" withObject:event];
 	}
-
+    
 	NSString * scheme = [[newUrl scheme] lowercaseString];
 	if ([scheme hasPrefix:@"http"] || [scheme isEqualToString:@"ftp"]
-			|| [scheme isEqualToString:@"file"] || [scheme isEqualToString:@"app"]) {
+        || [scheme isEqualToString:@"file"] || [scheme isEqualToString:@"app"]) {
 		DebugLog(@"[DEBUG] New scheme: %@",request);
         BOOL valid = !ignoreNextRequest;
         if ([scheme hasPrefix:@"http"]) {
             //UIWebViewNavigationTypeOther means we are either in a META redirect
-            //or it is a js request from within the page 
+            //or it is a js request from within the page
             valid = valid && (navigationType != UIWebViewNavigationTypeOther);
         }
 		if (valid) {
@@ -686,7 +688,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 			reloadMethod = @selector(setUrl_:);
 		}
 		if ([scheme isEqualToString:@"file"] || [scheme isEqualToString:@"app"]) {
-			[NSURLProtocol setProperty:[self titaniumInjection] forKey:kContentInjection inRequest:(NSMutableURLRequest *)request];
+			[NSURLProtocol setProperty:[self _inavidadInjection] forKey:kContentInjection inRequest:(NSMutableURLRequest *)request];
 		}
 		return YES;
 	}
@@ -739,11 +741,11 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
 	NSString *offendingUrl = [self url];
-
+    
 	if ([[error domain] isEqual:NSURLErrorDomain])
 	{
 		offendingUrl = [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey];
-
+        
 		// this means the pending request has been cancelled and should be
 		// safely squashed
 		if ([error code]==NSURLErrorCancelled)
@@ -751,18 +753,18 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 			return;
 		}
 	}
-
+    
 	NSLog(@"[ERROR] Error loading: %@, Error: %@",offendingUrl,error);
-
+    
 	if ([self.proxy _hasListeners:@"error"])
 	{
 		NSString * message = [TiUtils messageFromError:error];
 		NSMutableDictionary *event = [NSMutableDictionary dictionaryWithObject:message forKey:@"message"];
-
+        
 		// We combine some error codes into a single one which we share with Android.
 		NSInteger rawErrorCode = [error code];
 		NSInteger returnErrorCode = rawErrorCode;
-
+        
 		if (rawErrorCode == NSURLErrorUserCancelledAuthentication)
 		{
 			returnErrorCode = NSURLErrorUserAuthenticationRequired; // URL_ERROR_AUTHENTICATION
@@ -775,7 +777,7 @@ NSString *HTMLTextEncodingNameForStringEncoding(NSStringEncoding encoding)
 		{
 			returnErrorCode = NSURLErrorCannotFindHost; // URL_ERROR_HOST_LOOKUP
 		}
-
+        
 		[event setObject:[NSNumber numberWithInteger:returnErrorCode] forKey:@"errorCode"];
 		[event setObject:offendingUrl forKey:@"url"];
 		[self.proxy fireEvent:@"error" withObject:event errorCode:returnErrorCode message:message];
